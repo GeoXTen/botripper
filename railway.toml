@@ -1,0 +1,16 @@
+# Railway Deployment Configuration
+# This file tells Railway how to deploy your app
+
+# Build settings
+build:
+  commands:
+    - npm install
+
+# Runtime settings  
+start:
+  command: npm start
+
+# Environment variables (set these in Railway dashboard)
+# DISCORD_WEBHOOK_URL=your_webhook_url_here
+# CHECK_INTERVAL_MINUTES=5
+# MAX_POSTS_PER_CHECK=10

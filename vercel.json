@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "index.js"
+    }
+  ],
+  "env": {
+    "DISCORD_WEBHOOK_URL": "@discord_webhook_url",
+    "CHECK_INTERVAL_MINUTES": "5",
+    "MAX_POSTS_PER_CHECK": "10"
+  }
+}

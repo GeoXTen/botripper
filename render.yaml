@@ -1,0 +1,18 @@
+# Render Deployment Configuration
+
+# Build settings
+build: npm install
+
+# Start command
+start: npm start
+
+# Environment (set these in Render dashboard)
+# DISCORD_WEBHOOK_URL=your_webhook_url_here
+# CHECK_INTERVAL_MINUTES=5
+# MAX_POSTS_PER_CHECK=10
+
+# Service type
+type: background-worker
+
+# Node.js version
+node: 18
