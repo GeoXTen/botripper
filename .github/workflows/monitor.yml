@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: botripper
-        run: npm install
+        run: npm ci
 
       - name: Run bot (single check)
         working-directory: botripper
