@@ -23,17 +23,15 @@ jobs:
       - name: Restore database cache
         uses: actions/cache/restore@v3
         with:
-          path: botripper/posts.db
+          path: posts.db
           key: botripper-db-${{ github.sha }}
           restore-keys: |
             botripper-db-
 
       - name: Install dependencies
-        working-directory: botripper
         run: npm ci
 
       - name: Run bot (single check)
-        working-directory: botripper
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: node run-once.js
@@ -42,5 +40,5 @@ jobs:
         uses: actions/cache/save@v3
         if: always()
         with:
-          path: botripper/posts.db
+          path: posts.db
           key: botripper-db-${{ github.sha }}
