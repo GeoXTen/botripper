@@ -1,0 +1,46 @@
+name: Forum Monitor
+
+on:
+  schedule:
+    # Run every 5 minutes
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    # Allow manual triggers from Actions tab
+
+jobs:
+  check-forum:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Restore database cache
+        uses: actions/cache/restore@v3
+        with:
+          path: botripper/posts.db
+          key: botripper-db-${{ github.sha }}
+          restore-keys: |
+            botripper-db-
+
+      - name: Install dependencies
+        working-directory: botripper
+        run: npm install
+
+      - name: Run bot (single check)
+        working-directory: botripper
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node run-once.js
+
+      - name: Save database cache
+        uses: actions/cache/save@v3
+        if: always()
+        with:
+          path: botripper/posts.db
+          key: botripper-db-${{ github.sha }}
