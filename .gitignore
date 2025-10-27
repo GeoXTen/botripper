@@ -35,6 +35,3 @@ Thumbs.db
 # Ignore build outputs
 dist/
 build/
-
-# Ignore package-lock for better compatibility
-package-lock.json
